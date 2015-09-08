@@ -16,8 +16,7 @@ public class LineTruncator {
             char character = text.charAt(index);
 
             if (maxLineLimit.isReachedOnSpace(index, character) || delayedTruncateState.shouldTruncate(character)) {
-                truncatedText.append('\n');
-                delayedTruncateState.reset();
+                truncate(truncatedText, delayedTruncateState);
             } else {
                 truncatedText.append(character);
             }
@@ -28,6 +27,11 @@ public class LineTruncator {
         }
 
         return truncatedText.toString();
+    }
+
+    private void truncate(StringBuilder truncatedText, DelayedTruncateState delayedTruncateState) {
+        truncatedText.append('\n');
+        delayedTruncateState.reset();
     }
 
     public static LineTruncator lineTruncator(LineLimit limit){

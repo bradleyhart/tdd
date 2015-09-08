@@ -21,9 +21,9 @@ public class LineTruncator {
             if(truncateOnNextSpace){
                 truncatedText.append('\n');
                 truncateOnNextSpace = false;
-            } else if (maxLineLimit.isReached(index) && character == ' ') {
+            } else if (limitReachedOnSpace(index, character)) {
                 truncatedText.append('\n');
-            } else if (maxLineLimit.isReached(index)) {
+            } else if (limitReachedOnNonSpace(index, character)) {
                 truncatedText.append(character);
                 truncateOnNextSpace = true;
             } else {
@@ -32,6 +32,14 @@ public class LineTruncator {
         }
 
         return truncatedText.toString();
+    }
+
+    private boolean limitReachedOnNonSpace(int index, char character) {
+        return maxLineLimit.isReached(index) && character != ' ';
+    }
+
+    private boolean limitReachedOnSpace(int index, char character) {
+        return maxLineLimit.isReached(index) && character == ' ';
     }
 
 }

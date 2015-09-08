@@ -1,6 +1,6 @@
 package org.bradleyhart.training;
 
-public class LineState {
+public class DelayedTruncateState {
     private boolean truncateOnNextSpace = false;
 
     public boolean shouldTruncate(char character) {

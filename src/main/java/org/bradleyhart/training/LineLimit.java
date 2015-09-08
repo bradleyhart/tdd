@@ -11,7 +11,7 @@ public class LineLimit {
         return value;
     }
 
-    public static LineLimit limit(int value){
+    public static LineLimit lineLimit(int value){
         return new LineLimit(value);
     }
 

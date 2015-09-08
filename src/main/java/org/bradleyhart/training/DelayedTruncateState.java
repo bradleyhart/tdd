@@ -1,6 +1,7 @@
 package org.bradleyhart.training;
 
 public class DelayedTruncateState {
+
     private boolean truncateOnNextSpace = false;
 
     public boolean shouldTruncate(char character) {
@@ -14,4 +15,5 @@ public class DelayedTruncateState {
     public void truncateOnNextSpace() {
         truncateOnNextSpace = true;
     }
+
 }

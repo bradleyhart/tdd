@@ -4,8 +4,10 @@ import static java.util.stream.IntStream.range;
 
 public class LineTruncator {
 
-    public LineTruncator(int maxLineLimit) {
+    private int maxLineLimit;
 
+    public LineTruncator(int maxLineLimit) {
+        this.maxLineLimit = maxLineLimit;
     }
 
     public String truncate(String text) {
@@ -23,7 +25,7 @@ public class LineTruncator {
     }
 
     private boolean hasReachedLineLimit(int index) {
-        return (index + 1) % 5 == 0;
+        return (index + 1) % maxLineLimit == 0;
     }
 
 }

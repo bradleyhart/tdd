@@ -25,4 +25,10 @@ public class LineTruncatorTest {
         assertThat(result, is(equalTo("some\ntext\njim")));
     }
 
+    @Test
+    public void shouldTruncateAtConfigurableValue(){
+        String result = new LineTruncator(3).truncate("hi ho");
+        assertThat(result, is(equalTo("hi\nho")));
+    }
+
 }

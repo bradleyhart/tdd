@@ -38,5 +38,11 @@ public class LineTruncatorTest {
         assertThat(result, is(equalTo("hello\nme")));
     }
 
+    @Test
+    public void shouldOnlyTruncateOnSpaceWhenSpaceIsNotAfterLimit(){
+        String result = new LineTruncator(limit(3)).truncate("hello me");
+        assertThat(result, is(equalTo("hello\nme")));
+    }
+
 
 }

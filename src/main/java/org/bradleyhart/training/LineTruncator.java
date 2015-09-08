@@ -18,7 +18,7 @@ public class LineTruncator {
         for (int index = 0; index < text.length(); index++) {
             char character = text.charAt(index);
 
-            if(truncateOnNextSpace){
+            if(truncateOnNextSpace && character == ' '){
                 truncatedText.append('\n');
                 truncateOnNextSpace = false;
             } else if (limitReachedOnSpace(index, character)) {

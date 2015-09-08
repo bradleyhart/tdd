@@ -2,7 +2,7 @@ package org.bradleyhart.training;
 
 import org.junit.Test;
 
-import static org.bradleyhart.training.Limit.limit;
+import static org.bradleyhart.training.LineLimit.limit;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;

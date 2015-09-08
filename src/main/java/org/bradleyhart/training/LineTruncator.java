@@ -2,9 +2,9 @@ package org.bradleyhart.training;
 
 public class LineTruncator {
 
-    private Limit maxLineLimit;
+    private LineLimit maxLineLimit;
 
-    public LineTruncator(Limit maxLineLimit) {
+    public LineTruncator(LineLimit maxLineLimit) {
         this.maxLineLimit = maxLineLimit;
     }
 

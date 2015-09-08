@@ -1,9 +1,9 @@
 package org.bradleyhart.training;
 
-public class Limit {
+public class LineLimit {
     private int value;
 
-    public Limit(int value) {
+    public LineLimit(int value) {
         this.value = value;
     }
 
@@ -11,8 +11,8 @@ public class Limit {
         return value;
     }
 
-    public static Limit limit(int value){
-        return new Limit(value);
+    public static LineLimit limit(int value){
+        return new LineLimit(value);
     }
 
     boolean isReached(int distanceFromHead) {

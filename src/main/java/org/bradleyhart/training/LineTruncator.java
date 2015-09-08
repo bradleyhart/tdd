@@ -13,22 +13,23 @@ public class LineTruncator {
     public String truncate(String text) {
         StringBuilder truncatedText = new StringBuilder();
 
-        final boolean[] truncateOnNextSpace = {false};
-        range(0, text.length()).forEach(index -> {
+        boolean truncateOnNextSpace = false;
+
+        for (int index = 0; index < text.length(); index++) {
             char character = text.charAt(index);
 
-            if(truncateOnNextSpace[0]){
+            if(truncateOnNextSpace){
                 truncatedText.append('\n');
-                truncateOnNextSpace[0] = false;
+                truncateOnNextSpace = false;
             } else if (maxLineLimit.isReached(index) && character == ' ') {
                 truncatedText.append('\n');
             } else if (maxLineLimit.isReached(index)) {
                 truncatedText.append(character);
-                truncateOnNextSpace[0] = true;
+                truncateOnNextSpace = true;
             } else {
                 truncatedText.append(character);
             }
-        });
+        }
 
         return truncatedText.toString();
     }

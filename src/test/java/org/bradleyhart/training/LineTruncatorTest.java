@@ -32,4 +32,11 @@ public class LineTruncatorTest {
         assertThat(result, is(equalTo("hi\nho")));
     }
 
+    @Test
+    public void shouldOnlyTruncateOnSpace(){
+        String result = new LineTruncator(limit(5)).truncate("hello me");
+        assertThat(result, is(equalTo("hello\nme")));
+    }
+
+
 }

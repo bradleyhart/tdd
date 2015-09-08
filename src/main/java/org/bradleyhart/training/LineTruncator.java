@@ -13,11 +13,20 @@ public class LineTruncator {
     public String truncate(String text) {
         StringBuilder truncatedText = new StringBuilder();
 
+        final boolean[] truncateOnNextSpace = {false};
         range(0, text.length()).forEach(index -> {
-            if(maxLineLimit.isReached(index)){
+            char character = text.charAt(index);
+
+            if(truncateOnNextSpace[0]){
                 truncatedText.append('\n');
+                truncateOnNextSpace[0] = false;
+            } else if (maxLineLimit.isReached(index) && character == ' ') {
+                truncatedText.append('\n');
+            } else if (maxLineLimit.isReached(index)) {
+                truncatedText.append(character);
+                truncateOnNextSpace[0] = true;
             } else {
-                truncatedText.append(text.charAt(index));
+                truncatedText.append(character);
             }
         });
 

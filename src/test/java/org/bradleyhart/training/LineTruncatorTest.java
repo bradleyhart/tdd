@@ -14,13 +14,13 @@ import static org.junit.Assert.assertThat;
 public class LineTruncatorTest {
 
     @Test
-    public void truncateLineAtLineLimit(){
+    public void shouldTruncateLineAtLineLimit(){
         String result = new LineTruncator(5).truncate("some text");
         assertThat(result, is(equalTo("some\ntext")));
     }
 
     @Test
-    public void truncateLineAtLineLimitWhenTwoLines(){
+    public void shouldTruncateLineAtLineLimitWhenTwoLines(){
         String result = new LineTruncator(5).truncate("some text jim");
         assertThat(result, is(equalTo("some\ntext\njim")));
     }

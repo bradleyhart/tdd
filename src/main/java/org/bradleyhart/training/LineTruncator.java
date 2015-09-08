@@ -10,7 +10,7 @@ public class LineTruncator {
         StringBuilder truncatedText = new StringBuilder();
 
         for (int index = 0; index < text.length(); index++) {
-            if((index + 1) % 5 == 0){
+            if(hasReachedLineLimit(index)){
                 truncatedText.append('\n');
             } else {
                 truncatedText.append(text.charAt(index));
@@ -18,6 +18,10 @@ public class LineTruncator {
         }
 
         return truncatedText.toString();
+    }
+
+    private boolean hasReachedLineLimit(int index) {
+        return (index + 1) % 5 == 0;
     }
 
 }

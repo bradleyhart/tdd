@@ -14,7 +14,7 @@ public class LineTruncator {
         StringBuilder truncatedText = new StringBuilder();
 
         range(0, text.length()).forEach(index -> {
-            if(hasReachedLineLimit(index)){
+            if(maxLineLimit.isReached(index)){
                 truncatedText.append('\n');
             } else {
                 truncatedText.append(text.charAt(index));
@@ -22,10 +22,6 @@ public class LineTruncator {
         });
 
         return truncatedText.toString();
-    }
-
-    private boolean hasReachedLineLimit(int index) {
-        return (index + 1) % maxLineLimit.getValue() == 0;
     }
 
 }

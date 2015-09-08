@@ -14,4 +14,8 @@ public class Limit {
     public static Limit limit(int value){
         return new Limit(value);
     }
+
+    boolean isReached(int distanceFromHead) {
+        return (distanceFromHead + 1) % getValue() == 0;
+    }
 }

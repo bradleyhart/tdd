@@ -18,11 +18,12 @@ public class LineTruncator {
             if (maxLineLimit.isReachedOnSpace(index, character) || delayedTruncateState.shouldTruncate(character)) {
                 truncatedText.append('\n');
                 delayedTruncateState.reset();
-            } else if (maxLineLimit.isReachedOnNonSpace(index, character)) {
-                truncatedText.append(character);
-                delayedTruncateState.truncateOnNextSpace();
             } else {
                 truncatedText.append(character);
+            }
+
+            if (maxLineLimit.isReachedOnNonSpace(index, character)) {
+                delayedTruncateState.truncateOnNextSpace();
             }
         }
 

@@ -1,5 +1,9 @@
 package org.bradleyhart.training;
 
+import java.util.stream.IntStream;
+
+import static java.util.stream.IntStream.range;
+
 public class LineTruncator {
 
     public LineTruncator(int maxLineLimit) {
@@ -9,13 +13,13 @@ public class LineTruncator {
     public String truncate(String text) {
         StringBuilder truncatedText = new StringBuilder();
 
-        for (int index = 0; index < text.length(); index++) {
+        range(0, text.length()).forEach(index -> {
             if(hasReachedLineLimit(index)){
                 truncatedText.append('\n');
             } else {
                 truncatedText.append(text.charAt(index));
             }
-        }
+        });
 
         return truncatedText.toString();
     }

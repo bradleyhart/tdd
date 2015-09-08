@@ -18,4 +18,13 @@ public class LineLimit {
     boolean isReached(int distanceFromHead) {
         return (distanceFromHead + 1) % getValue() == 0;
     }
+
+    boolean isReachedOnNonSpace(int index, char character) {
+        return isReached(index) && character != ' ';
+    }
+
+    boolean isReachedOnSpace(int index, char character) {
+        return isReached(index) && character == ' ';
+    }
+
 }

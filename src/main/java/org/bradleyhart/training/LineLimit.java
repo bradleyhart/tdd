@@ -3,7 +3,7 @@ package org.bradleyhart.training;
 public class LineLimit {
     private int value;
 
-    public LineLimit(int value) {
+    private LineLimit(int value) {
         this.value = value;
     }
 

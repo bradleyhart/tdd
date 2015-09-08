@@ -4,7 +4,7 @@ public class LineTruncator {
 
     private LineLimit maxLineLimit;
 
-    public LineTruncator(LineLimit maxLineLimit) {
+    private LineTruncator(LineLimit maxLineLimit) {
         this.maxLineLimit = maxLineLimit;
     }
 
@@ -28,6 +28,10 @@ public class LineTruncator {
         }
 
         return truncatedText.toString();
+    }
+
+    public static LineTruncator lineTruncator(LineLimit limit){
+        return new LineTruncator(limit);
     }
 
 }

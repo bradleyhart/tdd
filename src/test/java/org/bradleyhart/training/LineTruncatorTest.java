@@ -21,7 +21,7 @@ public class LineTruncatorTest {
 
     @Test
     public void truncateLineAtLineLimitWhenTwoLines(){
-        String result = new LineTruncator(4).truncate("some tea bag");
+        String result = new LineTruncator(5).truncate("some text jim");
         assertThat(result, is(equalTo("some\ntext\njim")));
     }
 

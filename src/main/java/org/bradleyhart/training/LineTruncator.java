@@ -7,7 +7,17 @@ public class LineTruncator {
     }
 
     public String truncate(String text) {
-        return "some\ntext";
+        StringBuilder truncatedText = new StringBuilder();
+
+        for (int index = 0; index < text.length(); index++) {
+            if((index + 1) % 5 == 0){
+                truncatedText.append('\n');
+            } else {
+                truncatedText.append(text.charAt(index));
+            }
+        }
+
+        return truncatedText.toString();
     }
 
 }

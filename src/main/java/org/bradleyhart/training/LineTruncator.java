@@ -18,11 +18,9 @@ public class LineTruncator {
         for (int index = 0; index < text.length(); index++) {
             char character = text.charAt(index);
 
-            if(truncateOnNextSpace && character == ' '){
+            if (limitReachedOnSpace(index, character) || delayedTruncateOnSpace(truncateOnNextSpace, character)) {
                 truncatedText.append('\n');
                 truncateOnNextSpace = false;
-            } else if (limitReachedOnSpace(index, character)) {
-                truncatedText.append('\n');
             } else if (limitReachedOnNonSpace(index, character)) {
                 truncatedText.append(character);
                 truncateOnNextSpace = true;
@@ -32,6 +30,10 @@ public class LineTruncator {
         }
 
         return truncatedText.toString();
+    }
+
+    private boolean delayedTruncateOnSpace(boolean truncateOnNextSpace, char character) {
+        return truncateOnNextSpace && character == ' ';
     }
 
     private boolean limitReachedOnNonSpace(int index, char character) {

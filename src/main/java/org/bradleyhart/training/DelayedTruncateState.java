@@ -7,7 +7,7 @@ public class DelayedTruncateState {
         return truncateOnNextSpace && character == ' ';
     }
 
-    public void resetLine() {
+    public void reset() {
         truncateOnNextSpace = false;
     }
 

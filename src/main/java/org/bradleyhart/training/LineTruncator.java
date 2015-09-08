@@ -1,7 +1,5 @@
 package org.bradleyhart.training;
 
-import static java.util.stream.IntStream.range;
-
 public class LineTruncator {
 
     private Limit maxLineLimit;
@@ -13,27 +11,23 @@ public class LineTruncator {
     public String truncate(String text) {
         StringBuilder truncatedText = new StringBuilder();
 
-        boolean truncateOnNextSpace = false;
+        LineState lineState = new LineState();
 
         for (int index = 0; index < text.length(); index++) {
             char character = text.charAt(index);
 
-            if (limitReachedOnSpace(index, character) || delayedTruncateOnSpace(truncateOnNextSpace, character)) {
+            if (limitReachedOnSpace(index, character) || lineState.shouldTruncate(character)) {
                 truncatedText.append('\n');
-                truncateOnNextSpace = false;
+                lineState.resetLine();
             } else if (limitReachedOnNonSpace(index, character)) {
                 truncatedText.append(character);
-                truncateOnNextSpace = true;
+                lineState.truncateOnNextSpace();
             } else {
                 truncatedText.append(character);
             }
         }
 
         return truncatedText.toString();
-    }
-
-    private boolean delayedTruncateOnSpace(boolean truncateOnNextSpace, char character) {
-        return truncateOnNextSpace && character == ' ';
     }
 
     private boolean limitReachedOnNonSpace(int index, char character) {

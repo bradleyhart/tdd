@@ -1,7 +1,5 @@
 package org.bradleyhart.training;
 
-import java.util.stream.IntStream;
-
 import static java.util.stream.IntStream.range;
 
 public class LineTruncator {

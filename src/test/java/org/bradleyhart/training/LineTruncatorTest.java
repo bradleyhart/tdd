@@ -2,6 +2,7 @@ package org.bradleyhart.training;
 
 import org.junit.Test;
 
+import static org.bradleyhart.training.Limit.limit;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
@@ -15,19 +16,19 @@ public class LineTruncatorTest {
 
     @Test
     public void shouldTruncateLineAtLineLimit(){
-        String result = new LineTruncator(5).truncate("some text");
+        String result = new LineTruncator(limit(5)).truncate("some text");
         assertThat(result, is(equalTo("some\ntext")));
     }
 
     @Test
     public void shouldTruncateLineAtLineLimitWhenTwoLines(){
-        String result = new LineTruncator(5).truncate("some text jim");
+        String result = new LineTruncator(limit(5)).truncate("some text jim");
         assertThat(result, is(equalTo("some\ntext\njim")));
     }
 
     @Test
     public void shouldTruncateAtConfigurableValue(){
-        String result = new LineTruncator(3).truncate("hi ho");
+        String result = new LineTruncator(limit(3)).truncate("hi ho");
         assertThat(result, is(equalTo("hi\nho")));
     }
 

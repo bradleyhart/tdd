@@ -4,9 +4,9 @@ import static java.util.stream.IntStream.range;
 
 public class LineTruncator {
 
-    private int maxLineLimit;
+    private Limit maxLineLimit;
 
-    public LineTruncator(int maxLineLimit) {
+    public LineTruncator(Limit maxLineLimit) {
         this.maxLineLimit = maxLineLimit;
     }
 
@@ -25,7 +25,7 @@ public class LineTruncator {
     }
 
     private boolean hasReachedLineLimit(int index) {
-        return (index + 1) % maxLineLimit == 0;
+        return (index + 1) % maxLineLimit.getValue() == 0;
     }
 
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PageDivider {
 
-    public PageDivider(int i) {
+    public PageDivider(int i, LineTruncator lineTruncator) {
     }
 
     public List<String> dividePages(String s) {

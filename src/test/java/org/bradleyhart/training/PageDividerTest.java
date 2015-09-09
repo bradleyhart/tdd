@@ -17,4 +17,12 @@ public class PageDividerTest {
         assertThat(pages.get(0), is(equalTo("on the first page")));
     }
 
+    @Test
+    public void shouldNotDivideAcrossTwoPages(){
+        List<String> pages = new PageDivider(2).dividePages("some text jim");
+        assertThat(pages.size(), is(1));
+        assertThat(pages.get(0), is(equalTo("some\ntext jim")));
+        assertThat(pages.get(1), is(equalTo("jim")));
+    }
+
 }

@@ -24,16 +24,20 @@ public class PageDivider {
             currentPage.addLine(lines[index]);
 
             if(linesPerPage.hasReachedLimit(index)){
-                pages.add(currentPage);
+                addCurrentPage(pages, currentPage);
                 currentPage = new Page();
             } else if(isNotLastLine(lines, index)) {
                 currentPage.newLine();
             }
         }
 
-        pages.add(currentPage);
+        addCurrentPage(pages, currentPage);
 
         return pages;
+    }
+
+    private void addCurrentPage(List<Page> pages, Page currentPage) {
+        pages.add(currentPage);
     }
 
     private boolean isNotLastLine(String[] lines, int index) {

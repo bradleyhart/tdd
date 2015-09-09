@@ -14,27 +14,44 @@ public class PageDivider {
     }
 
     public List<String> dividePages(String text) {
-        String truncated = lineTruncator.truncate(text);
-
         List<String> pages = new ArrayList<String>();
-        StringBuilder page = new StringBuilder();
+        StringBuilder currentPage = new StringBuilder();
 
-        String[] lines = truncated.split("\n");
+        String[] lines = lineTruncator.truncate(text).split("\n");
 
         for (int index = 0; index < lines.length; index++) {
-            page.append(lines[index]);
+            addLine(currentPage, lines[index]);
 
-            if((index + 1) % lineLimit == 0){
-                pages.add(page.toString());
-                page = new StringBuilder();
-            } else if (index != (lines.length - 1)) {
-                page.append('\n');
+            if(isOnLimit(index)){
+                addCurrentPage(pages, currentPage);
+                currentPage = new StringBuilder();
+            } else if (!isLastLine(lines, index)) {
+                addNewLine(currentPage);
             }
         }
 
-        pages.add(page.toString());
+        return addCurrentPage(pages, currentPage);
+    }
 
+    private void addLine(StringBuilder currentPage, String line) {
+        currentPage.append(line);
+    }
+
+    private void addNewLine(StringBuilder currentPage) {
+        currentPage.append('\n');
+    }
+
+    private List<String> addCurrentPage(List<String> pages, StringBuilder currentPage) {
+        pages.add(currentPage.toString());
         return pages;
+    }
+
+    private boolean isLastLine(String[] lines, int index) {
+        return index == (lines.length - 1);
+    }
+
+    private boolean isOnLimit(int index) {
+        return (index + 1) % lineLimit == 0;
     }
 
 }

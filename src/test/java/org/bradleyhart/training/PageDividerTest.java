@@ -12,10 +12,12 @@ import static org.mockito.Mockito.when;
 
 public class PageDividerTest {
 
-    LineTruncator lineTruncator = mock(LineTruncator.class);
+    private LineTruncator lineTruncator = mock(LineTruncator.class);
 
     @Test
     public void shouldPutOnFirstPageWhenNumberOfLinesPerPageIsLargerThanText(){
+        when(lineTruncator.truncate("on the first page")).thenReturn("on the first page");
+
         List<String> pages = new PageDivider(100, lineTruncator).dividePages("on the first page");
 
         assertThat(pages.size(), is(1));

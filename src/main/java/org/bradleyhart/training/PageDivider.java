@@ -4,6 +4,8 @@ package org.bradleyhart.training;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.bradleyhart.training.Page.newPage;
+
 public class PageDivider {
 
     private LineTruncator lineTruncator;
@@ -25,7 +27,7 @@ public class PageDivider {
 
             if(linesPerPage.hasReachedLimit(index)){
                 addCurrentPage(pages, currentPage);
-                currentPage = new Page();
+                currentPage = newPage();
             } else if(isNotLastLine(lines, index)) {
                 currentPage.newLine();
             }

@@ -15,4 +15,8 @@ public class Page {
     public void newLine() {
         text.append('\n');
     }
+
+    public static Page newPage(){
+        return new Page();
+    }
 }

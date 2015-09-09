@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static org.bradleyhart.training.LinesPerPage.linesPerPage;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
@@ -18,7 +19,7 @@ public class PageDividerTest {
     public void shouldPutOnFirstPageWhenNumberOfLinesPerPageIsLargerThanText(){
         when(lineTruncator.truncate("on the first page")).thenReturn("on the first page");
 
-        List<String> pages = new PageDivider(100, lineTruncator).dividePages("on the first page");
+        List<String> pages = new PageDivider(linesPerPage(100), lineTruncator).dividePages("on the first page");
 
         assertThat(pages.size(), is(1));
         assertThat(pages.get(0), is(equalTo("on the first page")));
@@ -28,7 +29,7 @@ public class PageDividerTest {
     public void shouldPutTextOnSecondPage(){
         when(lineTruncator.truncate("some text jim")).thenReturn("some\ntext\njim");
 
-        List<String> pages = new PageDivider(2, lineTruncator).dividePages("some text jim");
+        List<String> pages = new PageDivider(linesPerPage(2), lineTruncator).dividePages("some text jim");
 
         assertThat(pages.size(), is(2));
         assertThat(pages.get(0), is(equalTo("some\ntext")));

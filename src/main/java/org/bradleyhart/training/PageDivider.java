@@ -7,9 +7,9 @@ import java.util.List;
 public class PageDivider {
 
     private LineTruncator lineTruncator;
-    private int linesPerPage;
+    private LinesPerPage linesPerPage;
 
-    public PageDivider(int linesPerPage, LineTruncator lineTruncator) {
+    public PageDivider(LinesPerPage linesPerPage, LineTruncator lineTruncator) {
         this.linesPerPage = linesPerPage;
         this.lineTruncator = lineTruncator;
     }
@@ -24,7 +24,7 @@ public class PageDivider {
         for (int index = 0; index < lines.length; index++) {
             page.append(lines[index]);
 
-            if((index + 1) % linesPerPage == 0){
+            if(linesPerPage.hasReachedLimit(index)){
                 pages.add(page.toString());
                 page = new StringBuilder();
             } else if(index != (lines.length - 1)) {

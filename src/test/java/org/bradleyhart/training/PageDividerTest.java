@@ -19,21 +19,21 @@ public class PageDividerTest {
     public void shouldPutOnFirstPageWhenNumberOfLinesPerPageIsLargerThanText(){
         when(lineTruncator.truncate("on the first page")).thenReturn("on the first page");
 
-        List<String> pages = new PageDivider(linesPerPage(100), lineTruncator).dividePages("on the first page");
+        List<Page> pages = new PageDivider(linesPerPage(100), lineTruncator).dividePages("on the first page");
 
         assertThat(pages.size(), is(1));
-        assertThat(pages.get(0), is(equalTo("on the first page")));
+        assertThat(pages.get(0).getText(), is(equalTo("on the first page")));
     }
 
     @Test
     public void shouldPutTextOnSecondPage(){
         when(lineTruncator.truncate("some text jim")).thenReturn("some\ntext\njim");
 
-        List<String> pages = new PageDivider(linesPerPage(2), lineTruncator).dividePages("some text jim");
+        List<Page> pages = new PageDivider(linesPerPage(2), lineTruncator).dividePages("some text jim");
 
         assertThat(pages.size(), is(2));
-        assertThat(pages.get(0), is(equalTo("some\ntext")));
-        assertThat(pages.get(1), is(equalTo("jim")));
+        assertThat(pages.get(0).getText(), is(equalTo("some\ntext")));
+        assertThat(pages.get(1).getText(), is(equalTo("jim")));
     }
 
 }

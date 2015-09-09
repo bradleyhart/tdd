@@ -14,25 +14,25 @@ public class PageDivider {
         this.lineTruncator = lineTruncator;
     }
 
-    public List<String> dividePages(String text) {
+    public List<Page> dividePages(String text) {
         String truncatedText = lineTruncator.truncate(text);
         String[] lines = truncatedText.split("\n");
 
-        List<String> pages = new ArrayList<String>();
+        List<Page> pages = new ArrayList<Page>();
 
-        StringBuilder page = new StringBuilder();
+        Page page = new Page();
         for (int index = 0; index < lines.length; index++) {
-            page.append(lines[index]);
+            page.addLine(lines[index]);
 
             if(linesPerPage.hasReachedLimit(index)){
-                pages.add(page.toString());
-                page = new StringBuilder();
+                pages.add(page);
+                page = new Page();
             } else if(index != (lines.length - 1)) {
-                page.append('\n');
+                page.newLine();
             }
         }
 
-        pages.add(page.toString());
+        pages.add(page);
 
         return pages;
     }
